@@ -1,0 +1,16 @@
+##########################
+##Unreal Generated Files##
+##########################
+*/Intermediate/
+*/Binaries/
+*/Build/
+*/Saved/
+*/DerivedDataCache/
+room escape rough.ai
+room escape rough.png
+RoomEscape/Content/StarterContent/
+######################
+##VS Generated Files##
+######################
+*.VC.db
+*.VC.opendb
