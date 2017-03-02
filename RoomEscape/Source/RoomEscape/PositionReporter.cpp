@@ -21,13 +21,15 @@ void UPositionReporter::BeginPlay()
 	Super::BeginPlay();
 
 	FString ObjectName = GetOwner()->GetName();
+	FString ObjectPos = GetOwner()->GetTransform().GetLocation().ToString();// not fully sure how this works but i did it 100% myself....with googles help...cough...
 
-	UE_LOG(LogTemp, Warning, TEXT("Position Report for %s"), *ObjectName);// %s is a Format Specifier..dont forget :P
+
+	UE_LOG(LogTemp, Warning, TEXT("%s is at %s"), *ObjectName, *ObjectPos);// %s is a Format Specifier..dont forget :P
 	// ...
-	
 }
 
 
+	
 // Called every frame
 void UPositionReporter::TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction)
 {
