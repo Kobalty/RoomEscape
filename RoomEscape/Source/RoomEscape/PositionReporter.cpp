@@ -21,8 +21,8 @@ void UPositionReporter::BeginPlay()
 	Super::BeginPlay();
 
 	FString ObjectName = GetOwner()->GetName();
-	FString ObjectPos = GetOwner()->GetActorLocation().ToString();// not fully sure how this works but i did it 100% myself....with googles help...cough...
-
+	FString ObjectPos = GetOwner()->GetActorLocation().ToString();// returns an FVector continaing the location XYZ which .ToString turns into an Fstring so the outputlog can read X= 356 etc
+	
 
 	UE_LOG(LogTemp, Warning, TEXT("%s is at %s"), *ObjectName, *ObjectPos);// %s is a Format Specifier..dont forget :P
 	// ...
