@@ -20,22 +20,26 @@ void UOpenDoor::BeginPlay()
 {
 	Super::BeginPlay();
 
+	
+
+		
+}
+
+void UOpenDoor::OpenDoor()
+{
 	AActor* Owner = GetOwner();
 
 	FRotator StartRotation = FRotator(0.0f, 50.0f, 0.0f);// sets the value of StartRotaion by defining the values of (Pitch, Yaw, Roll)
 
 	Owner->SetActorRotation(StartRotation);// Feeds the new FRotator StartRoation into this function and works.
-	
 
-	
+
+
 
 	FString OwnerRotation = *Owner->GetActorRotation().ToString();// allows the rotation to be outputted to the log.
 
 	UE_LOG(LogTemp, Warning, TEXT("Rotation is %s"), *OwnerRotation);
 
-
-	// ...
-	
 }
 
 
