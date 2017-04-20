@@ -25,7 +25,7 @@ void UOpenDoor::BeginPlay()
 		
 }
 
-void UOpenDoor::OpenDoor()
+void UOpenDoor::OpenDoor()// this just opens the door slightly on begin play but its redundant now.
 {
 	AActor* Owner = GetOwner();
 
