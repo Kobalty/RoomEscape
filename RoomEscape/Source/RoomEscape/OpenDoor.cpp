@@ -20,7 +20,7 @@ void UOpenDoor::BeginPlay()
 {
 	Super::BeginPlay();
 
-	
+	ActorThatOpens = GetWorld()->GetFirstPlayerController()->GetPawn(); //since ATO *atcor that opens* is a instance of actor class and pawn is inhertied from actor you can store the result of getpawn in ATO.
 
 		
 }
@@ -48,7 +48,7 @@ void UOpenDoor::TickComponent(float DeltaTime, ELevelTick TickType, FActorCompon
 {
 	Super::TickComponent(DeltaTime, TickType, ThisTickFunction);
 
-	if (PressurePlate->IsOverlappingActor(ActorThatOpens))// checks every frame to see if presureplate is overlapping with the correct actor in this case the actor that opens...horrid fucking name.
+	if (PressurePlate->IsOverlappingActor(ActorThatOpens))// checks every frame to see if pressureplate is overlapping with the correct actor in this case the actor that opens...horrid fucking name.
 	{
 		OpenDoor();
 	}
