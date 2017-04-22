@@ -29,7 +29,7 @@ void UOpenDoor::OpenDoor()// this just opens the door slightly on begin play but
 {
 	AActor* Owner = GetOwner();
 
-	FRotator StartRotation = FRotator(0.0f, 50.0f, 0.0f);// sets the value of StartRotaion by defining the values of (Pitch, Yaw, Roll)
+	FRotator StartRotation = FRotator(0.0f, -180.0f, 0.0f);// sets the value of StartRotaion by defining the values of (Pitch, Yaw, Roll)
 
 	Owner->SetActorRotation(StartRotation);// Feeds the new FRotator StartRoation into this function and works.
 
@@ -48,6 +48,10 @@ void UOpenDoor::TickComponent(float DeltaTime, ELevelTick TickType, FActorCompon
 {
 	Super::TickComponent(DeltaTime, TickType, ThisTickFunction);
 
+	if (PressurePlate->IsOverlappingActor(ActorThatOpens))// checks every frame to see if presureplate is overlapping with the correct actor in this case the actor that opens...horrid fucking name.
+	{
+		OpenDoor();
+	}
 	// ...
 }
 
