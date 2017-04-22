@@ -33,7 +33,6 @@ void UOpenDoor::OpenDoor()// this just opens the door slightly on begin play but
 
 
 
-
 	FString OwnerRotation = *Owner->GetActorRotation().ToString();// allows the rotation to be outputted to the log.
 
 	UE_LOG(LogTemp, Warning, TEXT("Rotation is %s"), *OwnerRotation);
@@ -42,6 +41,7 @@ void UOpenDoor::OpenDoor()// this just opens the door slightly on begin play but
 
 
 // Called every frame
+
 void UOpenDoor::TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction)
 {
 	Super::TickComponent(DeltaTime, TickType, ThisTickFunction);
