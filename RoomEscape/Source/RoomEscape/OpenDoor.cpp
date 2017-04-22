@@ -21,8 +21,6 @@ void UOpenDoor::BeginPlay()
 	Super::BeginPlay();
 
 	ActorThatOpens = GetWorld()->GetFirstPlayerController()->GetPawn(); //since ATO *atcor that opens* is a instance of actor class and pawn is inhertied from actor you can store the result of getpawn in ATO.
-
-		
 }
 
 void UOpenDoor::OpenDoor()// this just opens the door slightly on begin play but its redundant now.
