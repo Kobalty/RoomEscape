@@ -20,14 +20,16 @@ void UOpenDoor::BeginPlay()
 {
 	Super::BeginPlay();
 
+	Owner = GetOwner();
+
 	ActorThatOpens = GetWorld()->GetFirstPlayerController()->GetPawn(); //since ATO *atcor that opens* is a instance of actor class and pawn is inhertied from actor you can store the result of getpawn in ATO.
 }
 
-void UOpenDoor::OpenDoor()// this just opens the door slightly on begin play but its redundant now.
+void UOpenDoor::OpenDoor()// this just opens the door to a certain agnle.
 {
-	AActor* Owner = GetOwner();
+	
 
-	FRotator StartRotation = FRotator(0.0f, -180.0f, 0.0f);// sets the value of StartRotaion by defining the values of (Pitch, Yaw, Roll)
+	FRotator StartRotation = FRotator(0.0f, OpenAngle, 0.0f);// sets the value of StartRotaion by defining the values of (Pitch, Yaw, Roll)
 
 	Owner->SetActorRotation(StartRotation);// Feeds the new FRotator StartRoation into this function and works.
 
@@ -39,6 +41,21 @@ void UOpenDoor::OpenDoor()// this just opens the door slightly on begin play but
 
 }
 
+void UOpenDoor::CloseDoor()// Closes the door after a certain time.
+{
+	
+
+	FRotator EndRotation = FRotator(0.0f, -89.0f, 0.0f);// sets the value of StartRotaion by defining the values of (Pitch, Yaw, Roll)
+
+	Owner->SetActorRotation(EndRotation);// Feeds the new FRotator StartRoation into this function and works.
+
+
+
+	FString OwnerRotation = *Owner->GetActorRotation().ToString();// allows the rotation to be outputted to the log.
+
+	UE_LOG(LogTemp, Warning, TEXT("Rotation is %s"), *OwnerRotation);
+
+}
 
 // Called every frame
 
@@ -49,7 +66,20 @@ void UOpenDoor::TickComponent(float DeltaTime, ELevelTick TickType, FActorCompon
 	if (PressurePlate->IsOverlappingActor(ActorThatOpens))// checks every frame to see if pressureplate is overlapping with the correct actor in this case the actor that opens...horrid fucking name.
 	{
 		OpenDoor();
+
+		DoorLastOpenTime = GetWorld()->GetTimeSeconds(); 
 	}
-	// ...
+	
+	if (GetWorld()->GetTimeSeconds() >= DoorLastOpenTime)// this will makue sure the door shuts after the delayhas been checked/ waithed for.
+	{
+		
+		if (GetWorld()->GetTimeSeconds() >= CloseDoorDelay) // not clean or effcient but hopefully working!! FUCK IT LEAVINF IT HERE FOR TONIGHT IM CREAM CRACKERD
+		{
+			CloseDoor();
+		}
+		
+
+	}
+	// Check to see if its time to close the door.
 }
 

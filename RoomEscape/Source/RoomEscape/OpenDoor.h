@@ -14,12 +14,14 @@ class ROOMESCAPE_API UOpenDoor : public UActorComponent
 public:	
 	// Sets default values for this component's properties
 	UOpenDoor();
+	
 
 protected:
 	// Called when the game starts
 	virtual void BeginPlay() override;
-
 	void OpenDoor();
+	void CloseDoor();
+
 
 public:	
 	// Called every frame
@@ -28,11 +30,18 @@ public:
 		
 private:
 	UPROPERTY(VisibleAnywhere)
-		float OpenAngle = 90.0f;
+		float OpenAngle = -180.0f;
 
 	UPROPERTY(EditAnywhere)
 		ATriggerVolume* PressurePlate;
 
+	UPROPERTY(EditAnywhere)
+		float CloseDoorDelay = 1.0f;
+
+	
+		float DoorLastOpenTime = 0.0f;
+
+		AActor* Owner = GetOwner(); // moved here due to the face both open door and close door need to access this.
 	
 		AActor* ActorThatOpens;// remember class inheritance.
 };
