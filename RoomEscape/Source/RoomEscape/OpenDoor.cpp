@@ -70,13 +70,10 @@ void UOpenDoor::TickComponent(float DeltaTime, ELevelTick TickType, FActorCompon
 		DoorLastOpenTime = GetWorld()->GetTimeSeconds(); 
 	}
 	
-	if (GetWorld()->GetTimeSeconds() >= DoorLastOpenTime)// this will makue sure the door shuts after the delayhas been checked/ waithed for.
+	if (DoorLastOpenTime + CloseDoorDelay == GetWorld()-> GetTimeSeconds())// this will make sure the door shuts after the delay has been checked/ waited for.
 	{
 		
-		if (GetWorld()->GetTimeSeconds() >= CloseDoorDelay) // not clean or effcient but hopefully working!! FUCK IT LEAVINF IT HERE FOR TONIGHT IM CREAM CRACKERD
-		{
-			CloseDoor();
-		}
+		CloseDoor();
 		
 
 	}
