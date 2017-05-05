@@ -37,7 +37,7 @@ void UOpenDoor::OpenDoor()// this just opens the door to a certain agnle.
 
 	FString OwnerRotation = *Owner->GetActorRotation().ToString();// allows the rotation to be outputted to the log.
 
-	UE_LOG(LogTemp, Warning, TEXT("Rotation is %s"), *OwnerRotation);
+	//UE_LOG(LogTemp, Warning, TEXT("Rotation is %s"), *OwnerRotation);
 
 }
 
@@ -53,7 +53,7 @@ void UOpenDoor::CloseDoor()// Closes the door after a certain time.
 
 	FString OwnerRotation = *Owner->GetActorRotation().ToString();// allows the rotation to be outputted to the log.
 
-	UE_LOG(LogTemp, Warning, TEXT("Rotation is %s"), *OwnerRotation);
+	//UE_LOG(LogTemp, Warning, TEXT("Rotation is %s"), *OwnerRotation);
 
 }
 

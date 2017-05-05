@@ -18,8 +18,11 @@ public:
 protected:
 	// Called when the game starts
 	virtual void BeginPlay() override;
+	FVector FirstPlayerLocation;
+	FRotator FirstPlayerRotation;
 
-	
+	void FirstPlayerViewReport();// function to do stuff with the location and rotation :P
+
 
 public:	
 	// Called every frame
