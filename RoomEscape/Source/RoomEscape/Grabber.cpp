@@ -28,9 +28,9 @@ void UGrabber::BeginPlay()
 
 void UGrabber::FirstPlayerViewReport()// should tidy up some clutter
 {
-	GetWorld()->GetFirstPlayerController()->GetPlayerViewPoint(FirstPlayerLocation, FirstPlayerRotation);// this allows me to get a return of location and rotation need to find something to sotre it in tho. has to be ticked otherwise it displays intilaised or first called values.
+	GetWorld()->GetFirstPlayerController()->GetPlayerViewPoint(FirstPlayerLocation, FirstPlayerRotation);// passes two empty variables into the funcion and returns them with values this also a "top down"search. has to be ticked otherwise it displays intilaised or first called values.
 	
-	UE_LOG(LogTemp, Warning, TEXT("Location:  %s  Rotation: %s "),*FirstPlayerLocation.ToString(), *FirstPlayerRotation.ToString()); // moved these onto one line.
+	UE_LOG(LogTemp, Warning, TEXT("Location:  %s  Rotation: %s "),*FirstPlayerLocation.ToString(), *FirstPlayerRotation.ToString()); // moved these onto one line. quick note that ToString works with vectors and rotators!
 	
 }
 
