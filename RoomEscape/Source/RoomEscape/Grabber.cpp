@@ -45,7 +45,7 @@ void UGrabber::TickComponent(float DeltaTime, ELevelTick TickType, FActorCompone
 
 	// just temp to get the lince trace drawn from player view point TODO tidy up later.
 
-	FVector LineTraceEnd = FirstPlayerLocation + FVector(0.0f, 0.0f, 40.0f);
+	FVector LineTraceEnd = FirstPlayerLocation + FirstPlayerRotation.Vector() *Reach;
 
 	DrawDebugLine(GetWorld(), FirstPlayerLocation, LineTraceEnd, FColor(255, 0, 0), false, 0.f, 0, 10.f);
 	// ...
