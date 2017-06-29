@@ -43,11 +43,20 @@ void UGrabber::TickComponent(float DeltaTime, ELevelTick TickType, FActorCompone
 	
 	FirstPlayerViewReport();
 
-	// just temp to get the lince trace drawn from player view point TODO tidy up later.
+	/// just temp to get the line trace drawn from player view point TODO tidy up later.
 
 	FVector LineTraceEnd = FirstPlayerLocation + FirstPlayerRotation.Vector() *Reach;
 
 	DrawDebugLine(GetWorld(), FirstPlayerLocation, LineTraceEnd, FColor(255, 0, 0), false, 0.f, 0, 10.f);
+
+	/// Setup query parameters
+	FCollisionQueryParams TraceParameters(FName(TEXT("")), false, GetOwner());
+
+	/// lince trace aka (ray-cast) out to reach distance.
+	FHitResult Hit;
+
+	GetWorld()->LineTraceSingleByObjectType(OUT Hit, FirstPlayerLocation, LineTraceEnd, FCollisionObjectQueryParams(ECollisionChannel::ECC_PhysicsBody), TraceParameters);
+
 	// ...
 }
 
