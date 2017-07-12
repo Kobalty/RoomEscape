@@ -20,10 +20,22 @@ void UGrabber::BeginPlay()
 {
 	Super::BeginPlay();
 
+	UE_LOG(LogTemp, Warning, TEXT("Grabber Reporting for duty..tolotaly not pervy :P")); /// just lets me know the Grabber is ready to go. Putting a ";" causes this not to work.
 	
+	/// Look for attached physics handle
+	PhysicsHandle = GetOwner()->FindComponentByClass<UPhysicsHandleComponent>();
+	
+	/// Test the above statement works
 
-	UE_LOG(LogTemp, Warning, TEXT("Grabber Reporting for duty..tolotaly not pervy :P")); // just lets me know the Grabber is ready to go. Putting a ";" causes this not to work.
-	
+	if (PhysicsHandle)
+	{
+		// if found do nothing
+	}
+	else
+	{
+		UE_LOG(LogTemp, Error, TEXT("No Physics Handle found for: %s "), *GetOwner()->GetName()); // logs out the warning if no physics handle is found and then specifies fo which object aka owner it failed for.
+
+	}
 }
 
 void UGrabber::FirstPlayerViewReport()// should tidy up some clutter
