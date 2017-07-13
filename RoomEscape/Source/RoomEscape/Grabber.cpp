@@ -53,7 +53,7 @@ void UGrabber::TickComponent(float DeltaTime, ELevelTick TickType, FActorCompone
 	Super::TickComponent(DeltaTime, TickType, ThisTickFunction);
 
 	
-	FirstPlayerViewReport();
+	FirstPlayerViewReport(); // going to disable this for the time being as its shitting up my log * dsiabling this kills the draw debug line
 
 	/// just temp to get the line trace drawn from player view point TODO tidy up later.
 
