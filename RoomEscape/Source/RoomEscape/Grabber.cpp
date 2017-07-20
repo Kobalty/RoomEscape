@@ -36,13 +36,25 @@ void UGrabber::BeginPlay()
 		UE_LOG(LogTemp, Error, TEXT("No Physics Handle found for: %s "), *GetOwner()->GetName()); // logs out the warning if no physics handle is found and then specifies fo which object aka owner it failed for.
 
 	}
+
+	InputComponent = GetOwner()->FindComponentByClass<UInputComponent>();
+
+	if (InputComponent)
+	{
+		// do nothing if found
+		
+	}
+	else
+	{
+		UE_LOG(LogTemp, Error, TEXT("No input Component found for: %s "), *GetOwner()->GetName());
+	}
 }
 
 void UGrabber::FirstPlayerViewReport()// should tidy up some clutter
 {
 	GetWorld()->GetFirstPlayerController()->GetPlayerViewPoint(FirstPlayerLocation, FirstPlayerRotation);// passes two empty variables into the funcion and returns them with values this also a "top down"search. has to be ticked otherwise it displays intilaised or first called values.
 	
-	UE_LOG(LogTemp, Warning, TEXT("Location:  %s  Rotation: %s "),*FirstPlayerLocation.ToString(), *FirstPlayerRotation.ToString()); // moved these onto one line. quick note that ToString works with vectors and rotators!
+	UE_LOG(LogTemp, Warning, TEXT("Location:  %s  Rotation: %s "),*FirstPlayerLocation.ToString(), *FirstPlayerRotation.ToString()); // moved these onto one line. quick note that ToString works with vectors and rotator!
 	
 }
 
