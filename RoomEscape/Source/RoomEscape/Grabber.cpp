@@ -37,12 +37,12 @@ void UGrabber::BeginPlay()
 
 	}
 
-	InputComponent = GetOwner()->FindComponentByClass<UInputComponent>();
+	InputComponent = GetOwner()->FindComponentByClass<UInputComponent>(); /// look for attached input component
 
 	if (InputComponent)
 	{
 		// do nothing if found
-		
+		UE_LOG(LogTemp, Warning, TEXT("Input Component found for: %s "), *GetOwner()->GetName());
 	}
 	else
 	{
@@ -54,7 +54,7 @@ void UGrabber::FirstPlayerViewReport()// should tidy up some clutter
 {
 	GetWorld()->GetFirstPlayerController()->GetPlayerViewPoint(FirstPlayerLocation, FirstPlayerRotation);// passes two empty variables into the funcion and returns them with values this also a "top down"search. has to be ticked otherwise it displays intilaised or first called values.
 	
-	UE_LOG(LogTemp, Warning, TEXT("Location:  %s  Rotation: %s "),*FirstPlayerLocation.ToString(), *FirstPlayerRotation.ToString()); // moved these onto one line. quick note that ToString works with vectors and rotator!
+	/// **Edited out for my sanity ** UE_LOG(LogTemp, Warning, TEXT("Location:  %s  Rotation: %s "),*FirstPlayerLocation.ToString(), *FirstPlayerRotation.ToString()); // moved these onto one line. quick note that ToString works with vectors and rotator!
 	
 }
 
