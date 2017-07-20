@@ -43,12 +43,21 @@ void UGrabber::BeginPlay()
 	{
 		// do nothing if found
 		UE_LOG(LogTemp, Warning, TEXT("Input Component found for: %s "), *GetOwner()->GetName());
+
+		InputComponent->BindAction("Grab", IE_Pressed, this, &UGrabber::Grab); /// this is the function to actually do something with the action mappings (button presses) *this* referrs to this component, 
 	}
 	else
 	{
 		UE_LOG(LogTemp, Error, TEXT("No input Component found for: %s "), *GetOwner()->GetName());
 	}
 }
+
+
+void UGrabber::Grab()
+{
+	UE_LOG(LogTemp, Warning, TEXT("Grab Pressed "));
+}
+
 
 void UGrabber::FirstPlayerViewReport()// should tidy up some clutter
 {
@@ -89,4 +98,6 @@ void UGrabber::TickComponent(float DeltaTime, ELevelTick TickType, FActorCompone
 	}
 	// ...
 }
+
+
 
