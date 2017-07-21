@@ -22,6 +22,7 @@ protected:
 	FRotator FirstPlayerRotation;
 
 	void FirstPlayerViewReport();// function to do stuff with the location and rotation :P
+	void FindPhysicsComponent();// Checks to see if there is a physics component and logs accordingly.
 
 
 public:	

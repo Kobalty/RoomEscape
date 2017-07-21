@@ -10,8 +10,6 @@ UGrabber::UGrabber()
 	// Set this component to be initialized when the game starts, and to be ticked every frame.  You can turn these features
 	// off to improve performance if you don't need them.
 	PrimaryComponentTick.bCanEverTick = true;
-
-	// ...
 }
 
 
@@ -20,22 +18,7 @@ void UGrabber::BeginPlay()
 {
 	Super::BeginPlay();
 
-	UE_LOG(LogTemp, Warning, TEXT("Grabber Reporting for duty..totaly not pervy :P")); /// just lets me know the Grabber is ready to go. 
-	
-	/// Look for attached physics handle
-	PhysicsHandle = GetOwner()->FindComponentByClass<UPhysicsHandleComponent>();
-	
-	/// Test the above statement works
-
-	if (PhysicsHandle)
-	{
-		// if found do nothing
-	}
-	else
-	{
-		UE_LOG(LogTemp, Error, TEXT("No Physics Handle found for: %s "), *GetOwner()->GetName()); // logs out the warning if no physics handle is found and then specifies fo which object aka owner it failed for.
-
-	}
+	FindPhysicsComponent();
 
 	InputComponent = GetOwner()->FindComponentByClass<UInputComponent>(); /// look for attached input component
 
@@ -53,6 +36,21 @@ void UGrabber::BeginPlay()
 	}
 }
 
+void UGrabber::FindPhysicsComponent()
+{
+	PhysicsHandle = GetOwner()->FindComponentByClass<UPhysicsHandleComponent>(); /// Look for attached physics handle
+
+	if (PhysicsHandle) /// Test the above statement works
+	{
+		// if found do nothing
+	}
+	else
+	{
+		UE_LOG(LogTemp, Error, TEXT("No Physics Handle found for: %s "), *GetOwner()->GetName()); // logs out the warning if no physics handle is found and then specifies fo which object aka owner it failed for.
+
+	}
+
+}
 
 void UGrabber::Grab()
 {
@@ -65,9 +63,9 @@ void UGrabber::GrabReleased()
 }
 
 
-void UGrabber::FirstPlayerViewReport()// should tidy up some clutter
+void UGrabber::FirstPlayerViewReport()
 {
-	GetWorld()->GetFirstPlayerController()->GetPlayerViewPoint(FirstPlayerLocation, FirstPlayerRotation);// passes two empty variables into the funcion and returns them with values this also a "top down"search. has to be ticked otherwise it displays intilaised or first called values.
+	GetWorld()->GetFirstPlayerController()->GetPlayerViewPoint(FirstPlayerLocation, FirstPlayerRotation);/// passes two empty variables into the funcion and returns them with values this also a "top down"search. has to be ticked otherwise it displays intilaised or first called values.
 	
 	/// **Edited out for my sanity ** UE_LOG(LogTemp, Warning, TEXT("Location:  %s  Rotation: %s "),*FirstPlayerLocation.ToString(), *FirstPlayerRotation.ToString()); // moved these onto one line. quick note that ToString works with vectors and rotator!
 	
