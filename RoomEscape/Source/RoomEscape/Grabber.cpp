@@ -56,6 +56,27 @@ void UGrabber::SetupInputComponent()
 	}
 }
 
+const FHitResult UGrabber::GetFirstPhysicsBodyInReach()
+{
+	FVector LineTraceEnd = FirstPlayerLocation + FirstPlayerRotation.Vector() *Reach;
+
+	/// Setup query parameters
+	FCollisionQueryParams TraceParameters(FName(TEXT("")), false, GetOwner());
+
+	/// lince trace aka (ray-cast) out to reach distance.
+	FHitResult Hit;
+
+	GetWorld()->LineTraceSingleByObjectType(OUT Hit, FirstPlayerLocation, LineTraceEnd, FCollisionObjectQueryParams(ECollisionChannel::ECC_PhysicsBody), TraceParameters);
+
+	AActor *ActorHit = Hit.GetActor();
+
+	if (ActorHit)
+	{
+		UE_LOG(LogTemp, Warning, TEXT("You Hit:  %s  "), *ActorHit->GetName());
+	}
+	return FHitResult();
+}
+
 void UGrabber::Grab()
 {
 	UE_LOG(LogTemp, Warning, TEXT("Grab Pressed "));
@@ -90,19 +111,7 @@ void UGrabber::TickComponent(float DeltaTime, ELevelTick TickType, FActorCompone
 	
 	FirstPlayerViewReport(); // going to disable this for the time being as its shitting up my log * dsiabling this kills the draw debug line
 
-	/// just temp to get the line trace drawn from player view point TODO tidy up later.
-
-	FVector LineTraceEnd = FirstPlayerLocation + FirstPlayerRotation.Vector() *Reach;
-
 	
-
-	/// Setup query parameters
-	FCollisionQueryParams TraceParameters(FName(TEXT("")), false, GetOwner());
-
-	/// lince trace aka (ray-cast) out to reach distance.
-	FHitResult Hit;
-
-	GetWorld()->LineTraceSingleByObjectType(OUT Hit, FirstPlayerLocation, LineTraceEnd, FCollisionObjectQueryParams(ECollisionChannel::ECC_PhysicsBody), TraceParameters);
 
 	AActor *ActorHit = Hit.GetActor();
 
