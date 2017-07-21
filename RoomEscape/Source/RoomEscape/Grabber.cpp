@@ -82,7 +82,7 @@ void UGrabber::Grab()
 	UE_LOG(LogTemp, Warning, TEXT("Grab Pressed "));
 
 	// line trace and see if we reach any actor with physicsbody collision channel set.
-
+	GetFirstPhysicsBodyInReach();
 	// if we hit anything then attach a physics handle
 	//TODO attach Physics handle
 }
@@ -111,14 +111,6 @@ void UGrabber::TickComponent(float DeltaTime, ELevelTick TickType, FActorCompone
 	
 	FirstPlayerViewReport(); // going to disable this for the time being as its shitting up my log * dsiabling this kills the draw debug line
 
-	
-
-	AActor *ActorHit = Hit.GetActor();
-
-	if (ActorHit)
-	{
-		UE_LOG(LogTemp, Warning, TEXT("You Hit:  %s  "), *ActorHit->GetName());
-	}
 	// ...
 }
 
