@@ -60,7 +60,7 @@ void UGrabber::Grab()
 {
 	UE_LOG(LogTemp, Warning, TEXT("Grab Pressed "));
 
-	// try and reach any actor with physicsbody collision channel set.
+	// line trace and see if we reach any actor with physicsbody collision channel set.
 
 	// if we hit anything then attach a physics handle
 	//TODO attach Physics handle
@@ -84,7 +84,9 @@ void UGrabber::FirstPlayerViewReport()
 void UGrabber::TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction)
 {
 	Super::TickComponent(DeltaTime, TickType, ThisTickFunction);
-
+	
+	// if the phycis handle is attached
+		// move object we are holding.
 	
 	FirstPlayerViewReport(); // going to disable this for the time being as its shitting up my log * dsiabling this kills the draw debug line
 
@@ -92,7 +94,7 @@ void UGrabber::TickComponent(float DeltaTime, ELevelTick TickType, FActorCompone
 
 	FVector LineTraceEnd = FirstPlayerLocation + FirstPlayerRotation.Vector() *Reach;
 
-	DrawDebugLine(GetWorld(), FirstPlayerLocation, LineTraceEnd, FColor(255, 0, 0), false, 0.f, 0, 10.f);
+	
 
 	/// Setup query parameters
 	FCollisionQueryParams TraceParameters(FName(TEXT("")), false, GetOwner());
