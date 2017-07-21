@@ -19,21 +19,9 @@ void UGrabber::BeginPlay()
 	Super::BeginPlay();
 
 	FindPhysicsHandleComponent();
+	SetupInputComponent();
 
-	InputComponent = GetOwner()->FindComponentByClass<UInputComponent>(); /// look for attached input component
-
-	if (InputComponent)
-	{
-		// do nothing if found
-		UE_LOG(LogTemp, Warning, TEXT("Input Component found for: %s "), *GetOwner()->GetName());
-
-		InputComponent->BindAction("Grab", IE_Pressed, this, &UGrabber::Grab); /// this is the function to actually do something with the action mappings (button presses) *this* referrs to this component, 
-		InputComponent->BindAction("Grab", IE_Released, this, &UGrabber::GrabReleased); /// this sees if the grab has been released.
-	}
-	else
-	{
-		UE_LOG(LogTemp, Error, TEXT("No input Component found for: %s "), *GetOwner()->GetName());
-	}
+	
 }
 
 void UGrabber::FindPhysicsHandleComponent()
@@ -50,6 +38,24 @@ void UGrabber::FindPhysicsHandleComponent()
 
 	}
 
+}
+
+void UGrabber::SetupInputComponent()
+{
+	InputComponent = GetOwner()->FindComponentByClass<UInputComponent>(); /// look for attached input component
+
+	if (InputComponent)
+	{
+		// do nothing if found
+		UE_LOG(LogTemp, Warning, TEXT("Input Component found for: %s "), *GetOwner()->GetName());
+
+		InputComponent->BindAction("Grab", IE_Pressed, this, &UGrabber::Grab); /// this is the function to actually do something with the action mappings (button presses) *this* referrs to this component, 
+		InputComponent->BindAction("Grab", IE_Released, this, &UGrabber::GrabReleased); /// this sees if the grab has been released.
+	}
+	else
+	{
+		UE_LOG(LogTemp, Error, TEXT("No input Component found for: %s "), *GetOwner()->GetName());
+	}
 }
 
 void UGrabber::Grab()

@@ -23,6 +23,7 @@ protected:
 
 	void FirstPlayerViewReport();// function to do stuff with the location and rotation :P
 	void FindPhysicsHandleComponent();// Checks to see if there is a physics component and logs accordingly.
+	void SetupInputComponent();// Sets up the input component and allows *grab* to be pressed or released.
 
 
 public:	
