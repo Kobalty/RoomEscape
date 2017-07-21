@@ -21,7 +21,6 @@ void UGrabber::BeginPlay()
 	FindPhysicsHandleComponent();
 	SetupInputComponent();
 
-	
 }
 
 void UGrabber::FindPhysicsHandleComponent()
@@ -37,7 +36,6 @@ void UGrabber::FindPhysicsHandleComponent()
 		UE_LOG(LogTemp, Error, TEXT("No Physics Handle found for: %s "), *GetOwner()->GetName()); // logs out the warning if no physics handle is found and then specifies fo which object aka owner it failed for.
 
 	}
-
 }
 
 void UGrabber::SetupInputComponent()
@@ -61,20 +59,24 @@ void UGrabber::SetupInputComponent()
 void UGrabber::Grab()
 {
 	UE_LOG(LogTemp, Warning, TEXT("Grab Pressed "));
+
+	// try and reach any actor with physicsbody collision channel set.
+
+	// if we hit anything then attach a physics handle
+	//TODO attach Physics handle
 }
 
 void UGrabber::GrabReleased()
 {
 	UE_LOG(LogTemp, Warning, TEXT("Grab Released "));
+	// TODO release phycis handle.
 }
-
 
 void UGrabber::FirstPlayerViewReport()
 {
 	GetWorld()->GetFirstPlayerController()->GetPlayerViewPoint(FirstPlayerLocation, FirstPlayerRotation);/// passes two empty variables into the funcion and returns them with values this also a "top down"search. has to be ticked otherwise it displays intilaised or first called values.
 	
-	/// **Edited out for my sanity ** UE_LOG(LogTemp, Warning, TEXT("Location:  %s  Rotation: %s "),*FirstPlayerLocation.ToString(), *FirstPlayerRotation.ToString()); // moved these onto one line. quick note that ToString works with vectors and rotator!
-	
+	/// **Edited out for my sanity ** UE_LOG(LogTemp, Warning, TEXT("Location:  %s  Rotation: %s "),*FirstPlayerLocation.ToString(), *FirstPlayerRotation.ToString()); // moved these onto one line. quick note that ToString works with vectors and rotator!	
 }
 
 
