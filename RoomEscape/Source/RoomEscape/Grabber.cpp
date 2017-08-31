@@ -74,7 +74,7 @@ const FHitResult UGrabber::GetFirstPhysicsBodyInReach()
 	{
 		UE_LOG(LogTemp, Warning, TEXT("You Hit:  %s  "), *ActorHit->GetName());
 	}
-	return FHitResult();
+	return Hit;
 }
 
 void UGrabber::Grab()
@@ -82,9 +82,20 @@ void UGrabber::Grab()
 	UE_LOG(LogTemp, Warning, TEXT("Grab Pressed "));
 
 	// line trace and see if we reach any actor with physicsbody collision channel set.
-	GetFirstPhysicsBodyInReach();
+	auto HitResult = GetFirstPhysicsBodyInReach();
+
+	auto ComponentToGrab = HitResult.GetComponent();
+	
 	// if we hit anything then attach a physics handle
-	//TODO attach Physics handle
+	auto ActorHit = HitResult.GetActor();
+	
+	
+	if (ActorHit != nullptr)
+	{
+		// attach Physics handle
+		// This is the new version and slightly different from the course training.
+		PhysicsHandle->GrabComponentAtLocationWithRotation(ComponentToGrab, NAME_None, ComponentToGrab->GetOwner()->GetActorLocation(), ComponentToGrab->GetOwner()->GetActorRotation());
+	}
 }
 
 void UGrabber::GrabReleased()
