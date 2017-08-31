@@ -102,6 +102,7 @@ void UGrabber::GrabReleased()
 {
 	UE_LOG(LogTemp, Warning, TEXT("Grab Released "));
 	// TODO release phycis handle.
+	PhysicsHandle->ReleaseComponent();
 }
 
 void UGrabber::FirstPlayerViewReport()
