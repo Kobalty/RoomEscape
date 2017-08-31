@@ -121,6 +121,12 @@ void UGrabber::TickComponent(float DeltaTime, ELevelTick TickType, FActorCompone
 	
 	FirstPlayerViewReport(); // going to disable this for the time being as its shitting up my log * dsiabling this kills the draw debug line
 
+	FVector LineTraceEnd = FirstPlayerLocation + FirstPlayerRotation.Vector() *Reach; // rough and horrible way of gettting the reach so i can grab items as seen below.
+
+	if (PhysicsHandle->GrabbedComponent)// if physics handle is attatched
+	{
+		PhysicsHandle->SetTargetLocation(LineTraceEnd); // move object were currently holding
+	}
 }
 
 
