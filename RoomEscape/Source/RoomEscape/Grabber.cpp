@@ -27,15 +27,11 @@ void UGrabber::FindPhysicsHandleComponent()
 {
 	PhysicsHandle = GetOwner()->FindComponentByClass<UPhysicsHandleComponent>(); /// Look for attached physics handle
 
-	if (PhysicsHandle) /// Test the above statement works
-	{
-		// if found do nothing
-	}
-	else
+	if (PhysicsHandle == nullptr) /// Test to see if physics handle is empty
 	{
 		UE_LOG(LogTemp, Error, TEXT("No Physics Handle found for: %s "), *GetOwner()->GetName()); // logs out the warning if no physics handle is found and then specifies fo which object aka owner it failed for.
-
 	}
+	
 }
 
 void UGrabber::SetupInputComponent()
@@ -44,9 +40,6 @@ void UGrabber::SetupInputComponent()
 
 	if (InputComponent)
 	{
-		// do nothing if found
-		UE_LOG(LogTemp, Warning, TEXT("Input Component found for: %s "), *GetOwner()->GetName());
-
 		InputComponent->BindAction("Grab", IE_Pressed, this, &UGrabber::Grab); /// this is the function to actually do something with the action mappings (button presses) *this* referrs to this component, 
 		InputComponent->BindAction("Grab", IE_Released, this, &UGrabber::GrabReleased); /// this sees if the grab has been released.
 	}
