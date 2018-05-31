@@ -123,8 +123,14 @@ void UGrabber::TickComponent(float DeltaTime, ELevelTick TickType, FActorCompone
 	}
 }
 
+void UGrabber::GetLineTraceStart()
+{
+	LineTraceStart = FirstPlayerLocation;
+}
 
 void UGrabber::GetLineTraceEnd()
 {
 	LineTraceEnd = FirstPlayerLocation + FirstPlayerRotation.Vector() *Reach;
 }
+
+
