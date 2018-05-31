@@ -52,14 +52,11 @@ void UGrabber::SetupInputComponent()
 const FHitResult UGrabber::GetFirstPhysicsBodyInReach()
 {
 	GetLineTraceEnd();
-
-	/// Setup query parameters
-	FCollisionQueryParams TraceParameters(FName(TEXT("")), false, GetOwner());
-
 	/// lince trace aka (ray-cast) out to reach distance.
 	FHitResult Hit;
-
-	GetWorld()->LineTraceSingleByObjectType(OUT Hit, FirstPlayerLocation, LineTraceEnd, FCollisionObjectQueryParams(ECollisionChannel::ECC_PhysicsBody), TraceParameters);
+	/// Setup query parameters
+	FCollisionQueryParams TraceParameters(FName(TEXT("")), false, GetOwner());
+	GetWorld()->LineTraceSingleByObjectType(OUT Hit, LineTraceStart, LineTraceEnd, FCollisionObjectQueryParams(ECollisionChannel::ECC_PhysicsBody), TraceParameters);
 
 	AActor *ActorHit = Hit.GetActor();
 
@@ -72,8 +69,6 @@ const FHitResult UGrabber::GetFirstPhysicsBodyInReach()
 
 void UGrabber::Grab()
 {
-	UE_LOG(LogTemp, Warning, TEXT("Grab Pressed "));
-
 	// line trace and see if we reach any actor with physicsbody collision channel set.
 	auto HitResult = GetFirstPhysicsBodyInReach();
 
@@ -93,7 +88,6 @@ void UGrabber::Grab()
 
 void UGrabber::GrabReleased()
 {
-	UE_LOG(LogTemp, Warning, TEXT("Grab Released "));
 	// TODO release phycis handle.
 	PhysicsHandle->ReleaseComponent();
 }
