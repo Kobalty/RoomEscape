@@ -51,7 +51,7 @@ void UGrabber::SetupInputComponent()
 
 const FHitResult UGrabber::GetFirstPhysicsBodyInReach()
 {
-	FVector LineTraceEnd = FirstPlayerLocation + FirstPlayerRotation.Vector() *Reach;
+	LineTraceEndResult();
 
 	/// Setup query parameters
 	FCollisionQueryParams TraceParameters(FName(TEXT("")), false, GetOwner());
@@ -115,7 +115,7 @@ void UGrabber::TickComponent(float DeltaTime, ELevelTick TickType, FActorCompone
 	
 	FirstPlayerViewReport(); // going to disable this for the time being as its shitting up my log * dsiabling this kills the draw debug line
 
-	FVector LineTraceEnd = FirstPlayerLocation + FirstPlayerRotation.Vector() *Reach; // rough and horrible way of gettting the reach so i can grab items as seen below.
+	LineTraceEndResult();// (refactored)
 
 	if (PhysicsHandle->GrabbedComponent)// if physics handle is attatched
 	{
@@ -124,4 +124,7 @@ void UGrabber::TickComponent(float DeltaTime, ELevelTick TickType, FActorCompone
 }
 
 
-
+void UGrabber::LineTraceEndResult()
+{
+	LineTraceEnd = FirstPlayerLocation + FirstPlayerRotation.Vector() *Reach;
+}

@@ -20,11 +20,13 @@ protected:
 	virtual void BeginPlay() override;
 	FVector FirstPlayerLocation;
 	FRotator FirstPlayerRotation;
+	FVector LineTraceEnd; // the end of the line trace, the start would be the current FirstPlayerLocation + FirstPlayerRotation *Reach.
 
 	void FirstPlayerViewReport();// function to do stuff with the location and rotation :P
 	void FindPhysicsHandleComponent();// Checks to see if there is a physics component and logs accordingly.
 	void SetupInputComponent();// Sets up the input component and allows *grab* to be pressed or released.
 	const FHitResult GetFirstPhysicsBodyInReach(); // returns a hit for the first physics body in reach.
+	void LineTraceEndResult();// function to return the line trace end.
 
 public:	
 	// Called every frame
