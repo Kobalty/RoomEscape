@@ -53,18 +53,18 @@ const FHitResult UGrabber::GetFirstPhysicsBodyInReach()
 {
 	GetLineTraceEnd();
 	/// lince trace aka (ray-cast) out to reach distance.
-	FHitResult Hit;
+	FHitResult HitResult;
 	/// Setup query parameters
 	FCollisionQueryParams TraceParameters(FName(TEXT("")), false, GetOwner());
-	GetWorld()->LineTraceSingleByObjectType(OUT Hit, LineTraceStart, LineTraceEnd, FCollisionObjectQueryParams(ECollisionChannel::ECC_PhysicsBody), TraceParameters);
+	GetWorld()->LineTraceSingleByObjectType(OUT HitResult, LineTraceStart, LineTraceEnd, FCollisionObjectQueryParams(ECollisionChannel::ECC_PhysicsBody), TraceParameters);
 
-	AActor *ActorHit = Hit.GetActor();
+	AActor *ActorHit = HitResult.GetActor();
 
 	if (ActorHit)
 	{
 		UE_LOG(LogTemp, Warning, TEXT("You Hit:  %s  "), *ActorHit->GetName());
 	}
-	return Hit;
+	return HitResult;
 }
 
 void UGrabber::Grab()
