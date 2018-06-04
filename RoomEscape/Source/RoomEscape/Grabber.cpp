@@ -72,7 +72,7 @@ void UGrabber::Grab()
 	// line trace and see if we reach any actor with physicsbody collision channel set.
 	auto HitResult = GetFirstPhysicsBodyInReach();
 
-	auto ComponentToGrab = HitResult.GetComponent();
+	auto ComponentToGrab = HitResult.GetComponent(); // gets the "mesh" in this case
 	
 	// if we hit anything then attach a physics handle
 	auto ActorHit = HitResult.GetActor();
