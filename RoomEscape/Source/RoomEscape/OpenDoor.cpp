@@ -2,6 +2,9 @@
 
 #include "RoomEscape.h"
 #include "OpenDoor.h"
+#include "Grabber.h"
+
+#define OUT
 
 
 // Sets default values for this component's properties
@@ -63,7 +66,7 @@ void UOpenDoor::TickComponent(float DeltaTime, ELevelTick TickType, FActorCompon
 {
 	Super::TickComponent(DeltaTime, TickType, ThisTickFunction);
 
-	if (PressurePlate->IsOverlappingActor(ActorThatOpens))// checks every frame to see if pressureplate is overlapping with the correct actor in this case the actor that opens...horrid fucking name.
+	if (GetMassOfActorsOnPlate() > 59.f)//TODO make checked value into a parameter.
 	{
 		OpenDoor();
 
@@ -79,3 +82,13 @@ void UOpenDoor::TickComponent(float DeltaTime, ELevelTick TickType, FActorCompon
 	}
 }
 
+float UOpenDoor::GetMassOfActorsOnPlate()
+{
+	float TotalMass = 0.f;
+
+	TArray <AActor*> OverlappingActors;
+
+	PressurePlate->GetOverlappingActors()
+	
+	return TotalMass;
+}
