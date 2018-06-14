@@ -26,6 +26,8 @@ void UGrabber::BeginPlay()
 void UGrabber::FindPhysicsHandleComponent()
 {
 	PhysicsHandle = GetOwner()->FindComponentByClass<UPhysicsHandleComponent>(); /// Look for attached physics handle
+	
+	if (!PhysicsHandle) { return; } // checks to see if not physics handlle which means if the PhsyicsHaandle doesnt exist or is null the return and dont run anything else this is pointer protection.
 
 	if (PhysicsHandle == nullptr) /// Test to see if physics handle is empty
 	{
@@ -110,6 +112,8 @@ void UGrabber::TickComponent(float DeltaTime, ELevelTick TickType, FActorCompone
 	FirstPlayerViewReport(); // going to disable this for the time being as its shitting up my log * dsiabling this kills the draw debug line
 
 	GetLineTraceEnd();// (refactored)
+
+	if (!PhysicsHandle) { return; } // checks to see if not physics handlle which means if the PhsyicsHaandle doesnt exist or is null the return and dont run anything else this is pointer protection.
 
 	if (PhysicsHandle->GrabbedComponent)// if physics handle is attatched
 	{
