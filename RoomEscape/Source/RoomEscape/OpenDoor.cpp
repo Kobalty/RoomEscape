@@ -88,6 +88,13 @@ float UOpenDoor::GetMassOfActorsOnPlate()
 
 	TArray <AActor*> OverlappingActors;
 
+	if (!PressurePlate) { return; }; // if pressure not found then return out of this function.
+
+	if (PressurePlate == nullptr) //if null value log acordingly
+	{
+		UE_LOG(LogTemp, Error, TEXT("PressurePlate Value is Null: %s "));
+	}
+
 	PressurePlate->GetOverlappingActors(OUT OverlappingActors);
 
 	for (const auto* Actor : OverlappingActors)
