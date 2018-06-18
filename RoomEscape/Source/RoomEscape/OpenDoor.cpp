@@ -38,13 +38,13 @@ void UOpenDoor::OpenDoor()// this just opens the door to a certain agnle.
 {
 	
 
-	FRotator StartRotation = FRotator(0.0f, OpenAngle, 0.0f);// sets the value of StartRotaion by defining the values of (Pitch, Yaw, Roll)
+	//FRotator StartRotation = FRotator(0.0f, OpenAngle, 0.0f);// sets the value of StartRotaion by defining the values of (Pitch, Yaw, Roll)
 
-	Owner->SetActorRotation(StartRotation);// Feeds the new FRotator StartRoation into this function and works.
+	//Owner->SetActorRotation(StartRotation);// Feeds the new FRotator StartRoation into this function and works.
 
+	OnOpenRequest.Broadcast();
 
-
-	FString OwnerRotation = *Owner->GetActorRotation().ToString();// allows the rotation to be outputted to the log.
+	//FString OwnerRotation = *Owner->GetActorRotation().ToString();// allows the rotation to be outputted to the log.
 
 	//UE_LOG(LogTemp, Warning, TEXT("Rotation is %s"), *OwnerRotation);
 
