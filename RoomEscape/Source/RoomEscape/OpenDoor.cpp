@@ -88,7 +88,7 @@ float UOpenDoor::GetMassOfActorsOnPlate()
 
 	TArray <AActor*> OverlappingActors;
 
-	if (!PressurePlate) { return; }; // if pressure not found then return out of this function.
+	if (!PressurePlate) { return TotalMass; }; // if pressure not found then return out of this function with the current value of TotalMass which should be 0.f
 
 	if (PressurePlate == nullptr) //if null value log acordingly
 	{
