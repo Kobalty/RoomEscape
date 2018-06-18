@@ -26,6 +26,12 @@ void UOpenDoor::BeginPlay()
 	Owner = GetOwner();
 
 	ActorThatOpens = GetWorld()->GetFirstPlayerController()->GetPawn(); //since ATO *atcor that opens* is a instance of actor class and pawn is inhertied from actor you can store the result of getpawn in ATO.
+
+	if (!PressurePlate) // if Pressure plate not found log accordingly this. this is done at begin of play and logs out the name of the object which the trigger volue is attatched/associated with.
+	{ 
+		UE_LOG(LogTemp, Error, TEXT("%s's  PressurePlate is not found"), *GetOwner()->GetName());
+	}
+
 }
 
 void UOpenDoor::OpenDoor()// this just opens the door to a certain agnle.
@@ -88,12 +94,7 @@ float UOpenDoor::GetMassOfActorsOnPlate()
 
 	TArray <AActor*> OverlappingActors;
 
-	if (!PressurePlate) { return TotalMass; }; // if pressure not found then return out of this function with the current value of TotalMass which should be 0.f
-
-	if (PressurePlate == nullptr) //if null value log acordingly
-	{
-		UE_LOG(LogTemp, Error, TEXT("PressurePlate Value is Null: %s "));
-	}
+	if (!PressurePlate) { return TotalMass; } // if pressure not found then return out of this function with the value of 0.f aka TotalMass
 
 	PressurePlate->GetOverlappingActors(OUT OverlappingActors);
 

@@ -43,7 +43,7 @@ private:
 
 		AActor* Owner = GetOwner(); // moved here due to the face both open door and close door need to access this.
 	
-		AActor* ActorThatOpens;// remember class inheritance.
+		AActor* ActorThatOpens = nullptr;// remember class inheritance.
 
 		float GetMassOfActorsOnPlate(); //returns weight value of all actors on trigger plate
 };
