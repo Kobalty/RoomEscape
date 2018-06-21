@@ -30,6 +30,10 @@ public:
 	UPROPERTY(BlueprintAssignable)
 		FDoorEvent OnOpen;
 
+	UPROPERTY(BlueprintAssignable)
+		FDoorEvent OnClose;
+
+
 		
 private:
 	
