@@ -46,6 +46,10 @@ void UOpenDoor::TickComponent(float DeltaTime, ELevelTick TickType, FActorCompon
 		OnOpen.Broadcast();
 
 	}
+	else
+	{
+		OnClose.Broadcast();
+	}
 	
 }
 
