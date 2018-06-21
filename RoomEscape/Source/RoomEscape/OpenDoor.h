@@ -20,8 +20,7 @@ public:
 protected:
 	// Called when the game starts
 	virtual void BeginPlay() override;
-	void OpenDoor();
-	void CloseDoor();
+
 
 
 public:	
@@ -29,21 +28,17 @@ public:
 	virtual void TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction) override;
 
 	UPROPERTY(BlueprintAssignable)
-		FOnOpenRequest OnOpenRequest;
+		FOnOpenRequest OnOpen;
 
 		
 private:
-	UPROPERTY(VisibleAnywhere)
-		float OpenAngle = -180.0f;
+	
 
 	UPROPERTY(EditAnywhere)
 		ATriggerVolume* PressurePlate = nullptr;
 
 	UPROPERTY(EditAnywhere)
-		float CloseDoorDelay = 1.0f;
-
-	
-		float DoorLastOpenTime = 0.0f;
+	float TriggerMass = 59.0f;
 
 		AActor* Owner = GetOwner(); // moved here due to the face both open door and close door need to access this.
 	
